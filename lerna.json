@@ -1,0 +1,19 @@
+  
+{
+  "lerna": "3.20.2",
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {
+    "version": {
+      "allowBranch": [
+        "master"
+      ],
+      "conventionalCommits": true
+    }
+  },
+  "packages": [
+    "libs/*",
+    "apps/*"
+  ]
+}

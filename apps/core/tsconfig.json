@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "jsx": "preserve",
+        "typeRoots": [
+            "./type",
+            "./node_modules/@types"
+        ]
+    }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "svelte-monorepo-starter",
+  "version": "0.0.1",
+  "description": "Monorepo for developing svelte-centric apps, components and libraries",
+  "main": "sites/core/index.js",
+  "author": "Barry Low <barry@studiobear.co>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": ["libs/*", "apps/*"],
+  "scripts": {
+    "monocheck": "manypkg check",
+    "monofix": "manypkg fix"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@manypkg/cli": "^0.9.0",
+    "cypress": "^4.0.1",
+    "husky": "^4.2.1",
+    "lerna": "^3.20.2",
+    "standard-version": "^7.1.0",
+    "svelte": "^3.18.1"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
+    }
+  }
+}
