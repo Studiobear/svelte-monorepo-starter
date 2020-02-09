@@ -22,11 +22,13 @@
     "clean": "lerna run clean",
     "lint": "lerna run lint",
     "lint:fix": "lerna run lint:fix",
+    "eslint": "lerna run eslint",
+    "eslint:fix": "lerna run eslint:fix",
     "test": "lerna run test",
     "monocheck": "manypkg check",
     "monofix": "manypkg fix",
-    "check-packages": "yarn clean && yarn monocheck && yarn lint",
-    "fix-packages": "yarn clean && yarn monofix && yarn lint:fix"
+    "check-packages": "yarn clean && yarn monocheck && yarn lint && yarn eslint",
+    "fix-packages": "yarn clean && yarn monofix && yarn lint:fix && yarn eslint:fix"
   },
   "commitlint": {
     "extends": [

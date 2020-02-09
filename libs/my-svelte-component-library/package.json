@@ -10,6 +10,8 @@
   "scripts": {
     "build": "rollup -c",
     "prepublishOnly": "yarn build",
+    "eslint": "eslint src",
+    "eslint:fix": "eslint --fix src",
     "lint": "prettier --check 'src/**/*.{html,js,svelte}'",
     "lint:fix": "prettier --write 'src/**/*.{html,js,svelte}'",
     "test": "jest src",
