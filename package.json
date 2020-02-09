@@ -6,20 +6,22 @@
   "author": "Barry Low <barry@studiobear.co>",
   "license": "MIT",
   "private": true,
-  "workspaces": ["libs/*", "apps/*"],
+  "workspaces": [
+    "libs/*",
+    "apps/*"
+  ],
   "scripts": {
+    "build": "lerna run build",
+    "watch": "lerna run dev",
+    "clean": "lerna run clean",
+    "lint": "lerna run lint",
+    "lint:fix": "lerna run lint:fix",
+    "test": "lerna run test",
     "monocheck": "manypkg check",
-    "monofix": "manypkg fix"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
-    "@manypkg/cli": "^0.9.0",
-    "cypress": "^4.0.1",
-    "husky": "^4.2.1",
-    "lerna": "^3.20.2",
-    "standard-version": "^7.1.0",
-    "svelte": "^3.18.1"
+    "monofix": "manypkg fix",
+    "check-packages": "yarn clean && yarn monocheck && yarn lint",
+    "fix-packages": "yarn clean && yarn monofix && yarn lint:fix",
+    "precommit": "lint-staged"
   },
   "commitlint": {
     "extends": [
@@ -30,5 +32,23 @@
     "hooks": {
       "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
     }
+  },
+  "dependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@manypkg/cli": "^0.9.0",
+    "cypress": "^4.0.1",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-svelte3": "^2.7.3",
+    "husky": "^4.2.1",
+    "lerna": "^3.20.2",
+    "prettier": "^1.19.1",
+    "prettier-plugin-svelte": "^0.7.0",
+    "standard-version": "^7.1.0",
+    "svelte": "^3.18.1"
+  },
+  "devDependencies": {
+    "lint-staged": "^10.0.7"
   }
 }

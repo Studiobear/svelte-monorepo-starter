@@ -2,4 +2,7 @@
 /public/build/
 
 .DS_Store
-*.svelte
+
+# svelte
+.cache
+dist

@@ -54,6 +54,9 @@ typings/
 # library output
 lib
 
+# jest testing
+.jest-*
+
 # Mac files
 .DS_Store
 
