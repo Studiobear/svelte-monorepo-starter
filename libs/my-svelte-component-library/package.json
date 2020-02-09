@@ -1,0 +1,48 @@
+{
+  "name": "my-svelte-component-library",
+  "version": "0.0.1",
+  "description": "Your Svelte componentlibrary",
+  "author": "Your name <your@email.address>",
+  "license": "MIT",
+  "svelte": "src/index.js",
+  "module": "dist/index.mjs",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "prepublishOnly": "yarn build",
+    "lint": "prettier --check 'src/**/*.{html,js,svelte}'",
+    "lint:fix": "prettier --write 'src/**/*.{html,js,svelte}'",
+    "test": "jest src",
+    "test:watch": "yarn test -- --watch"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@rollup/plugin-node-resolve": "^7.0.0",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/svelte": "^1.11.0",
+    "babel-jest": "^25.1.0",
+    "jest": "^25.1.0",
+    "jest-dom": "^4.0.0",
+    "jest-transform-svelte": "^2.1.1",
+    "prettier": "^1.19.1",
+    "prettier-plugin-svelte": "^0.7.0",
+    "rollup": "^1.21.4",
+    "rollup-plugin-svelte": "^5.1.0",
+    "svelte": "^3.18.1",
+    "svelte-jester": "^1.0.3"
+  },
+  "peerDependencies": {
+    "svelte": "^3.18.1"
+  },
+  "keywords": [
+    "svelte",
+    "sveltejs",
+    "svelte3",
+    "svelte-components"
+  ],
+  "files": [
+    "src",
+    "dist"
+  ]
+}
