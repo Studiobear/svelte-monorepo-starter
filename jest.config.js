@@ -11,9 +11,5 @@ module.exports = {
     '<rootDir>/node_modules/(?!(gatsby|@ionic|ionicons)/)',
     '<rootDir>/packages/*/src/*',
   ],
-  globals: {
-    __PATH_PREFIX__: '',
-  },
-  setupFiles: [`<rootDir>/config/jest/loadershim.js`],
-  setupFilesAfterEnv: ['<rootDir>/config/jest/setup.ts'],
+  setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
 }

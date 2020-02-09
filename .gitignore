@@ -51,9 +51,6 @@ typings/
 # workspace
 .vscode
 
-# library output
-lib
-
 # jest testing
 .jest-*
 
