@@ -6,10 +6,16 @@
   "author": "Barry Low <barry@studiobear.co>",
   "license": "MIT",
   "private": true,
-  "workspaces": [
-    "libs/*",
-    "apps/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "libs/*",
+      "apps/*"
+    ],
+    "nohoist": [
+      "**/rollup-plugin-svelte",
+      "**/rollup-plugin-svelte/**"
+    ]
+  },
   "scripts": {
     "build": "lerna run build",
     "watch": "lerna run dev",
@@ -35,8 +41,10 @@
       "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
     }
   },
-  "lint-staged": {"*": "lerna run lint:fix"},
-  "devDependencies": {
+  "lint-staged": {
+    "*": "lerna run lint:fix"
+  },
+  "dependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@manypkg/cli": "^0.9.0",
