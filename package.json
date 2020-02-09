@@ -37,15 +37,10 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "lint-staged && lerna test",
+      "pre-commit": "yarn fix-packages",
+      "pre-push": "yarn fix-packages && yarn test",
       "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
     }
-  },
-  "lint-staged": {
-    "*.{js,ts,svelte,json,md,css,pcss}": [
-      "prettier --write"
-    ]
   },
   "dependencies": {
     "@commitlint/cli": "^8.3.5",
@@ -59,7 +54,6 @@
     "eslint-plugin-svelte3": "^2.7.3",
     "husky": "^4.2.1",
     "lerna": "^3.20.2",
-    "lint-staged": "^10.0.7",
     "prettier": "^1.19.1",
     "prettier-plugin-svelte": "^0.7.0",
     "standard-version": "^7.1.0",
