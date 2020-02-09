@@ -30,6 +30,8 @@
   },
   "husky": {
     "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "lint-staged && lerna test",
       "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
     }
   },
