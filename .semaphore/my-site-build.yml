@@ -4,13 +4,10 @@ agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
-auto_cancel:
-  running:
-    when: 'true'
 blocks:
   - name: Build Sites
-    run:
-      when: result = 'passed'
+    skip:
+      when: branch != 'master' AND branch != 'develop'
     task:
       jobs:
         - name: Build Core
