@@ -15,7 +15,7 @@ blocks:
     dependencies: []
     task:
       jobs:
-        - name: Run Tests
+        - name: Install & Bootstrap
           commands:
             - nvm use 10
             - checkout
@@ -27,9 +27,9 @@ blocks:
     dependencies: ['Install Dependencies']
     task:
       jobs:
-        - name: Run Tests
+        - name: Check packages, lint and run tests
           commands:
-            - cache restore)
+            - cache restore
             - yarn check-packages && yarn test
             - cache store monorepo-ci-$SEMAPHORE_GIT_BRANCH-$(checksum package.json) .
 promotions:
