@@ -1,0 +1,30 @@
+version: v1.0
+name: Starter CI
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+auto_cancel:
+  running:
+    when: 'true'
+fail_fast:
+  stop:
+    when: "branch != 'master' AND branch != 'develop'"
+blocks:
+  - name: Install Dependencies & Test
+    task:
+      jobs:
+        - name: Run Tests
+          commands:
+            - nvm use 10
+            - checkout
+            - cache restore
+            - yarn global add lerna
+            - lerna bootstrap
+            - yarn check-packages && yarn test
+            - cache store monorepo-ci-$SEMAPHORE_GIT_BRANCH-$(checksum package.json) .
+promotions:
+  - name: Build my-site
+    pipeline_file: my-site-build.yml
+    auto_promote:
+      when: result = 'passed' and (branch = 'master' OR branch = 'develop') and change_in('/my-site/')

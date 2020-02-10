@@ -1,0 +1,27 @@
+version: v1.0
+name: Core Build
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+auto_cancel:
+  running:
+    when: 'true'
+blocks:
+  - name: 'Build Sites'
+    run:
+      when: "result = 'passed' and (branch = 'master' OR branch = 'develop')"
+    task:
+      jobs:
+        - name: Build Core
+          commands:
+            - nvm use 10
+            - checkout
+            - cache restore monorepo-ci-$SEMAPHORE_GIT_BRANCH-$(checksum package.json)
+            - yarn workspace my-site build
+            - cache store monorepo-my-site-$SEMAPHORE_GIT_BRANCH-$(checksum package.json) apps/my-site/__sapper__/build
+promotions:
+  - name: Deploy my-site
+    pipeline_file: my-site-deploy.yml
+    auto_promote:
+      when: result = 'passed' and (branch = 'master')
