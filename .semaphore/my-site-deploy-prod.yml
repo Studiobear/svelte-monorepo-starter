@@ -11,7 +11,7 @@ blocks:
             - nvm use 10
             - yarn global add netlify-cli
             - cache restore monorepo-my-site-$SEMAPHORE_GIT_BRANCH-$(checksum package.json)
-            - netlify deploy --dir=apps/my-site/__sapper__/build --prod
+            - netlify deploy --dir=apps/my-site/__sapper__/export --prod
 agent:
   machine:
     type: e1-standard-2
