@@ -22,9 +22,9 @@ blocks:
             - yarn global add lerna
             - lerna bootstrap
             - yarn check-packages && yarn test
-            - cache store monorepo-ci-$SEMAPHORE_GIT_BRANCH .
+            - cache store monorepo-ci-$SEMAPHORE_GIT_BRANCH-$(checksum package.json) .
 promotions:
   - name: Build my-site
     pipeline_file: my-site-build.yml
     auto_promote:
-      when: result = 'passed' and (branch = 'master') and change_in('/my-site/')
+      when: result = 'passed' and (branch = 'master' OR branch = 'develop') and change_in('/my-site/')

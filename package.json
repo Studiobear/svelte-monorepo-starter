@@ -1,8 +1,7 @@
 {
   "name": "svelte-monorepo-starter",
   "version": "0.0.2",
-  "description": "Monorepo for developing svelte-centric apps, components and libraries",
-  "main": "sites/core/index.js",
+  "description": "Monorepo for developing Svelte-centric apps, components and libraries",
   "author": "Barry Low <barry@studiobear.co>",
   "license": "MIT",
   "private": true,
