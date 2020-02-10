@@ -29,8 +29,9 @@ blocks:
       jobs:
         - name: Run Tests
           commands:
-            - cache restore monorepo-ci-$SEMAPHORE_GIT_BRANCH-$(checksum package.json)
+            - cache restore)
             - yarn check-packages && yarn test
+            - cache store monorepo-ci-$SEMAPHORE_GIT_BRANCH-$(checksum package.json) .
 promotions:
   - name: Build - My Site
     pipeline_file: my-site-build.yml
