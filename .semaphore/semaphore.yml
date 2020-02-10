@@ -27,4 +27,4 @@ promotions:
   - name: Build My Site
     pipeline_file: my-site-build.yml
     auto_promote:
-      when: "result = 'passed' and (branch = 'master' or branch = 'develop')"
+      when: result = 'passed' and (branch = 'master' or branch = 'develop')
