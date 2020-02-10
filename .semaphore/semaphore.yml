@@ -9,7 +9,7 @@ auto_cancel:
     when: 'true'
 fail_fast:
   stop:
-    when: "branch != 'master' AND branch != 'develop'"
+    when: branch != 'master' AND branch != 'develop'
 blocks:
   - name: Install Dependencies & Test
     task:
@@ -22,9 +22,11 @@ blocks:
             - yarn global add lerna
             - lerna bootstrap
             - yarn check-packages && yarn test
-            - cache store monorepo-ci-$SEMAPHORE_GIT_BRANCH-$(checksum package.json) .
+            - >-
+              cache store monorepo-ci-$SEMAPHORE_GIT_BRANCH-$(checksum
+              package.json) .
 promotions:
   - name: Build - My Site
     pipeline_file: my-site-build.yml
     auto_promote:
-      when: "result = 'passed'and (branch = 'master' or branch = 'develop')"
+      when: result = 'passed'and (branch = 'master' or branch = 'develop')
