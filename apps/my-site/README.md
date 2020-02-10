@@ -1,6 +1,6 @@
-# sapper-template
+# My Site
 
-The default [Sapper](https://github.com/sveltejs/sapper) template, available for Rollup and webpack.
+This site was built with Svelte Sapper.
 
 ## Getting started
 
