@@ -9,7 +9,7 @@ auto_cancel:
     when: 'true'
 fail_fast:
   stop:
-    when: "branch != 'master' AND branch != 'develop'"
+    when: branch != 'master' AND branch != 'develop'
 blocks:
   - name: Install Dependencies
     dependencies: []
