@@ -1,6 +1,6 @@
 {
   "name": "svelte-monorepo-starter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Monorepo for developing svelte-centric apps, components and libraries",
   "main": "sites/core/index.js",
   "author": "Barry Low <barry@studiobear.co>",
@@ -28,7 +28,8 @@
     "monocheck": "manypkg check",
     "monofix": "manypkg fix",
     "check-packages": "yarn clean && yarn monocheck && yarn lint && yarn eslint",
-    "fix-packages": "yarn clean && yarn monofix && yarn lint:fix && yarn eslint:fix"
+    "fix-packages": "yarn clean && yarn monofix && yarn lint:fix && yarn eslint:fix",
+    "release": "standard-version"
   },
   "commitlint": {
     "extends": [
