@@ -1,0 +1,18 @@
+version: v1.0
+name: Deploy Production My Site
+blocks:
+  - name: Deploy My Site to Netlify
+    task:
+      secrets:
+        - name: netlify-auth-svelte-monorepo
+      jobs:
+        - name: Deploy Website
+          commands:
+            - nvm use 10
+            - yarn global add netlify-cli
+            - cache restore monorepo-my-site-$SEMAPHORE_GIT_BRANCH-$(checksum package.json)
+            - netlify deploy --dir=apps/my-site/__sapper__/export --prod
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804

@@ -1,0 +1,28 @@
+version: v1.0
+name: Build My Site
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Build Sites
+    skip:
+      when: branch != 'master' AND branch != 'develop'
+    task:
+      jobs:
+        - name: Build Core
+          commands:
+            - nvm use 10
+            - checkout
+            - cache restore monorepo-ci-$SEMAPHORE_GIT_BRANCH-$(checksum package.json)
+            - yarn workspace my-site export
+            - cache store monorepo-my-site-$SEMAPHORE_GIT_BRANCH-$(checksum package.json) apps/my-site/__sapper__/export
+promotions:
+  - name: Deploy Production My Site
+    pipeline_file: my-site-deploy-prod.yml
+    auto_promote:
+      when: result = 'passed' and branch = 'master'
+  - name: Deploy Stage My Site
+    pipeline_file: my-site-deploy-stage.yml
+    auto_promote:
+      when: result = 'passed' and branch = 'develop'

@@ -1,8 +1,7 @@
 {
   "name": "svelte-monorepo-starter",
-  "version": "0.0.1",
-  "description": "Monorepo for developing svelte-centric apps, components and libraries",
-  "main": "sites/core/index.js",
+  "version": "0.0.3",
+  "description": "Monorepo for developing Svelte-centric apps, components and libraries",
   "author": "Barry Low <barry@studiobear.co>",
   "license": "MIT",
   "private": true,
@@ -28,7 +27,8 @@
     "monocheck": "manypkg check",
     "monofix": "manypkg fix",
     "check-packages": "yarn clean && yarn monocheck && yarn lint && yarn eslint",
-    "fix-packages": "yarn clean && yarn monofix && yarn lint:fix && yarn eslint:fix"
+    "fix-packages": "yarn clean && yarn monofix && yarn lint:fix && yarn eslint:fix",
+    "release": "standard-version"
   },
   "commitlint": {
     "extends": [
@@ -39,14 +39,16 @@
     "hooks": {
       "pre-commit": "yarn fix-packages",
       "pre-push": "yarn fix-packages && yarn test",
-      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
+      "commit-msg": "commitlint -e --verbose $HUSKY_GIT_PARAMS"
     }
   },
   "dependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
     "@manypkg/cli": "^0.9.0",
+    "commitizen": "^4.0.3",
     "cypress": "^4.0.1",
+    "cz-conventional-changelog": "^3.1.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-import": "^2.20.1",
@@ -58,5 +60,10 @@
     "prettier-plugin-svelte": "^0.7.0",
     "standard-version": "^7.1.0",
     "svelte": "^3.18.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
