@@ -22,7 +22,7 @@ blocks:
             - yarn global add lerna
             - lerna bootstrap
             - yarn check-packages && yarn test
-            - cache store monorepo-ci-$SEMAPHORE_GIT_BRANCH
+            - cache store monorepo-ci-$SEMAPHORE_GIT_BRANCH .
 promotions:
   - name: Build my-site
     pipeline_file: my-site-build.yml
