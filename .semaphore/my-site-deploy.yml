@@ -4,7 +4,7 @@ blocks:
   - name: 'Deploy My Site to Netlify'
     task:
       secrets:
-        - name: netlify-authentication
+        - name: netlify-auth-svelte-monorepo
       jobs:
         - name: Deploy Website
           commands:
