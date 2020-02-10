@@ -10,7 +10,7 @@ auto_cancel:
 blocks:
   - name: Build Sites
     run:
-      when: result = 'passed' and (branch = 'master' OR branch = 'develop')
+      when: result = 'passed'
     task:
       jobs:
         - name: Build Core
@@ -24,8 +24,8 @@ promotions:
   - name: Deploy Production My Site
     pipeline_file: my-site-deploy-prod.yml
     auto_promote:
-      when: result = 'passed' and (branch = 'master')
+      when: result = 'passed' and branch = 'master'
   - name: Deploy Stage My Site
     pipeline_file: my-site-deploy-stage.yml
     auto_promote:
-      when: result = 'passed' and (branch = 'develop')
+      when: result = 'passed' and branch = 'develop'
