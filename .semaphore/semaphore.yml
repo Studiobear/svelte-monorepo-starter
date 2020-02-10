@@ -1,5 +1,5 @@
 version: v1.0
-name: Starter CI
+name: Svelte Monorepo CI
 agent:
   machine:
     type: e1-standard-2
@@ -27,4 +27,4 @@ promotions:
   - name: Build my-site
     pipeline_file: my-site-build.yml
     auto_promote:
-      when: result = 'passed' and (branch = 'master' OR branch = 'develop') and change_in('/my-site/')
+      when: result = 'passed' and (branch = 'master' OR branch = 'develop')
