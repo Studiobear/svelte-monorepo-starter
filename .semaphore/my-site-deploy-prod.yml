@@ -1,5 +1,5 @@
 version: v1.0
-name: Deploy Production - My Site
+name: Deploy Production My Site
 blocks:
   - name: Deploy My Site to Netlify
     task:

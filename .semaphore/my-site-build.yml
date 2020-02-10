@@ -1,5 +1,5 @@
 version: v1.0
-name: Build - My Site
+name: Build My Site
 agent:
   machine:
     type: e1-standard-2
@@ -25,11 +25,11 @@ blocks:
               cache store monorepo-my-site-$SEMAPHORE_GIT_BRANCH-$(checksum
               package.json) apps/my-site/__sapper__/build
 promotions:
-  - name: Deploy Production - My Site
+  - name: Deploy Production My Site
     pipeline_file: my-site-deploy-prod.yml
     auto_promote:
       when: result = 'passed' and (branch = 'master')
-  - name: Deploy Stage - My Site
+  - name: Deploy Stage My Site
     pipeline_file: my-site-deploy-stage.yml
     auto_promote:
       when: result = 'passed' and (branch = 'develop')

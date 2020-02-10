@@ -22,18 +22,10 @@ blocks:
             - cache restore
             - yarn global add lerna
             - lerna bootstrap
-            - cache store
-  - name: Run Tests
-    dependencies: ['Install Dependencies']
-    task:
-      jobs:
-        - name: Check packages, lint and run tests
-          commands:
-            - cache restore
             - yarn check-packages && yarn test
             - cache store monorepo-ci-$SEMAPHORE_GIT_BRANCH-$(checksum package.json) .
 promotions:
-  - name: Build - My Site
+  - name: Build My Site
     pipeline_file: my-site-build.yml
     auto_promote:
       when: "result = 'passed' and (branch = 'master' or branch = 'develop')"
