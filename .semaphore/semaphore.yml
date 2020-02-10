@@ -22,7 +22,7 @@ blocks:
             - cache restore
             - yarn global add lerna
             - lerna bootstrap
-            - cache store monorepo-ci-$SEMAPHORE_GIT_BRANCH-$(checksum package.json) .
+            - cache store
   - name: Run Tests
     dependencies: ['Install Dependencies']
     task:
