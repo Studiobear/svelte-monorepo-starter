@@ -21,7 +21,11 @@ blocks:
             - yarn workspace my-site build
             - cache store monorepo-my-site-$SEMAPHORE_GIT_BRANCH-$(checksum package.json) apps/my-site/__sapper__/build
 promotions:
-  - name: Deploy my-site
-    pipeline_file: my-site-deploy.yml
+  - name: Deploy production - my-site
+    pipeline_file: my-site-deploy-prod.yml
     auto_promote:
       when: result = 'passed' and (branch = 'master')
+  - name: Deploy stage - my-site
+    pipeline_file: my-site-deploy-stage.yml
+    auto_promote:
+      when: result = 'passed' and (branch = 'develop')
