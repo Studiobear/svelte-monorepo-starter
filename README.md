@@ -112,7 +112,7 @@ yarn test
 ### Package management
 
 ```shell
-# Add a package to a specific workspace (my-site) dev dependencies
+# Add a package to a specific workspace (my-site) dev dependencies from root dir
 yarn workspace my-site add some-library -D
 
 # Add a package to root
@@ -121,17 +121,32 @@ yarn add some-library -W
 # Add a dev dependency to all sub-repos
 lerna add some-library --dev
 
+# OR if in sub-repo dir use standard non-worspace commands
+yarn add some-library
+
 ```
+
+Adding local depedency (eg. using my-svelte-component-library in my-site)
+
+```shell
+lerna add my-svelte-component-library --dev --scope my-site
+
+# Adding version number of local package helps to ensure the local dep instead of pulling externally; eg NPM
+```
+
+Also, since this is a Svelte component library, be sure to add as dev so uncompiled version is used. Using lerna as Yarn doesn't correctly add to dev dependencies. [[Ref] yarnpkg issue 3973](https://github.com/yarnpkg/yarn/issues/3973)
 
 ### Git
 
 ```shell
 # Add all changes and commit:
-yarn commit \\ Instead of `git add . && git commit -m 'message...'`
+yarn commit \\ Instead of `git add . && git commit -m '[type](scope): message...'`
 
 # Release new version
 yarn release \\ Instead of `lerna publish`
 ```
+
+Note: Yes, remembering to use `yarn commit` is a pain at first and not much time/effort to use the standard method. However, the intent is in creating the healthy habit of consistently-formatted and informative commits. And, it's still your choice.
 
 ### Publishing packages
 
