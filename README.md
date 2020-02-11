@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://studiobear.semaphoreci.com/badges/svelte-monorepo-starter/branches/master">
-    <img src="https://studiobear.semaphoreci.com/badges/gatsby-starter-typescript-testing/branches/master.svg?style=shields" alt="CI Status of master branch on semaphoreci.com" />
+    <img src="https://studiobear.semaphoreci.com/badges/svelte-monorepo-starter/branches/master.svg?style=shields" alt="CI Status of master branch on semaphoreci.com" />
   </a>
   <img alt="GitHub" src="https://img.shields.io/github/license/Studiobear/svelte-monorepo-starter">
 </p>
