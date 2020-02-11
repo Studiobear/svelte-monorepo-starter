@@ -6,6 +6,7 @@
   "author": "Your name <your@email.address>",
   "license": "MIT",
   "scripts": {
+    "develop": "run-p --race dev cy:open",
     "dev": "sapper dev",
     "build": "sapper build --legacy",
     "export": "sapper export --legacy",
@@ -18,8 +19,7 @@
     "jest:watch": "yarn jest --watch src",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "test": "run-p --race jest cy:run",
-    "test:watch": "run-p --race dev cy:open"
+    "test": "run-p --race jest cy:run"
   },
   "dependencies": {
     "compression": "^1.7.1",
