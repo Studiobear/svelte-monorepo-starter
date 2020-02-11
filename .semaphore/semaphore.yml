@@ -17,6 +17,7 @@ blocks:
       jobs:
         - name: Install & Bootstrap
           commands:
+            - cache clear
             - nvm use 10
             - checkout
             - yarn global add lerna
