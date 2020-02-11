@@ -126,9 +126,8 @@ lerna add some-library --dev
 ### Git
 
 ```shell
-# Commit changes:
-git add .
-yarn commit \\ Instead of `git commit -m 'message...'`
+# Add all changes and commit:
+yarn commit \\ Instead of `git add . && git commit -m 'message...'`
 
 # Release new version
 yarn release \\ Instead of `lerna publish`
