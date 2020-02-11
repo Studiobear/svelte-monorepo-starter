@@ -22,6 +22,7 @@ This is a _template repository_ and can easily be used by visiting the [repo on 
 - Pre-configured git flow using [husky](https://github.com/typicode/husky) to enforce dependency checking, linting and testing on commits and pushes
 - Sample CI/CD setup using [Semaphore CI](https://semaphoreci.com)/Github and [Netlify](https://.netlify.com)
 - A [Commitizen](https://github.com/commitizen/cz-cli) friendly repo for standardized commit messages and changelog generation
+- Sample Svelte component library (libs/my-svelte-component-library) setup with [Storybook](https://storybook.js.org/) and testing via Jest/Testing-Library
 
 ## Getting Started
 
@@ -72,7 +73,7 @@ A truncated view looking at the most important parts of the structure
 1.  **`.semaphore`**: Folder containing pipeline files for semaphore ci
 2.  **`apps` & `libs`**: The default lerna monorepo uses `packages` dir for sub-repos. You can change this configuration in the lerna.json ("packages") and package.json file ("workspaces")
 3.  **`apps/my-site`**: A sample [Svelte](https://svelte.dev/) site using the [Sapper framework](https://sapper.svelte.dev/). Setup for unit testing with jest/testing-library and integration tests with cypress
-4.  **`libs/my-svelte-components-library`**: A sample library for creating svelte components. Setup with storybook and unit testing with jest/testing-library
+4.  **`libs/my-svelte-components-library`**: A sample library for creating svelte components. Setup with [Storybook](https://storybook.js.org/) and unit testing with jest/testing-library
 5.  **`package.json`**: This package file house the dependencies used monorepo-wide. Note the "scripts" used for management and CI/CD
 
 ## Monorepo Management

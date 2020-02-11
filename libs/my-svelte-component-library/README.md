@@ -1,30 +1,34 @@
-_Psst — looking for an app template? Go here --> [sveltejs/template](https://github.com/sveltejs/template)_
+This is a sample Svelte component library initially created from the Svelte [component-template](https://github.com/sveltejs/component-template).
+
+A few things have been added:
+
+- [Storybook](): For component development fun! Seriously though, makes test-driven development natural.
+- Jest/Testing-library: In combination with above === win!!!
 
 ---
 
-# component-template
+# My Svelte Component Library
 
-A base for building shareable Svelte components. Clone it with [degit](https://github.com/Rich-Harris/degit):
+A base for building shareable Svelte components.
 
-```bash
-npx degit sveltejs/component-template my-new-component
-cd my-new-component
-npm install # or yarn
-```
+    .
+    ├── .storybook
+    ├── src
+    │   └── components
+    │       ├── __tests__
+    │       ├── stories
+    │       └── ...components
+    ├── packag.json
+    └── ...
 
-Your component's source code lives in `src/Component.svelte`.
-
-You can create a package that exports multiple components by adding them to the `src` directory and editing `src/index.js` to reexport them as named exports.
-
-TODO
-
-- [ ] some firm opinions about the best way to test components
-- [ ] update `degit` so that it automates some of the setup work
+1.  **.storybook**: configuration for Storybook and where addons, knobs, etc. are registered.
+2.  **`src/components`**: Main component directory
+3.  **`.../__tests__`**: Jest/Testing-library tests for components
+4.  **`.../stories`**: Storybook stories
 
 ## Setting up
 
-- Run `npm init` (or `yarn init`)
-- Replace this README with your own
+As this sub-repo is part of a monorepo, the initial `yarn` and `lerna bootstrap`-ing will have installed and linked all necessary dependencies.
 
 ## Consuming components
 
