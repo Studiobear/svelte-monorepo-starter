@@ -18,8 +18,8 @@ This is a _template repository_ and can easily be used by visiting the [repo on 
 ## Features
 
 - Monorepo management by [Lerna](https://lerna.js.org/) and [Yarn Workspaces](https://yarnpkg.com/features/workspaces)
-- Initial setup emphasizes frontend development using Svelte, but as a monorepo should be flexible enough for anything
-- CI configured with enforcing of dependency checking, linting and testing
+- Initial setup emphasizes frontend development using Svelte, but as a monorepo is flexible enough for anything
+- Pre-configured git flow using [husky](https://github.com/typicode/husky) to enforce dependency checking, linting and testing on commits and pushes
 - Sample CI/CD setup using [Semaphore CI](https://semaphoreci.com)/Github and [Netlify](https://.netlify.com)
 - A [Commitizen](https://github.com/commitizen/cz-cli) friendly repo for standardized commit messages and changelog generation
 
@@ -48,7 +48,7 @@ yarn workspace my-svelte-component-library storybook
 lerna run storybook --scope my-svelte-component-library
 
 # try running svelte app in development
-yarn workspace my-site dev
+yarn workspace my-site develop
 
 # run all tests in monorepo
 lerna run test
@@ -77,6 +77,85 @@ A truncated view looking at the most important parts of the structure
 
 ## Monorepo Management
 
+This monorepo is managed by both Lerna and Yarn Workspaces. Workspaces provide the general mono-repo structure, while Lerna provides the global monorepo management.
+
+### Understanding the monorepo
+
+In general, Lerna will be used to run commands that affect all workspaces, while Yarn will be used to run workspace-centric commands.
+
+_Note: Most lerna commnads have been setup in the root package.json so that Yarn is mainly used_
+
+```console
+# First, find the available workspaces
+foo@bar:~$ yarn workspaces info
+{
+  "my-svelte-component-library": {
+    "location": "libs/my-svelte-component-library",
+    "workspaceDependencies": [],
+    "mismatchedWorkspaceDependencies": []
+  },
+  "my-site": {
+    "location": "apps/my-site",
+    "workspaceDependencies": [],
+    "mismatchedWorkspaceDependencies": []
+  }
+}
+
+# Run tests in all packages
+lerna run test
+# Note: This and other lerna commands are setup as scripts in root package.json. Use instead:
+yarn test
+
+```
+
+### Package management
+
+```shell
+# Add a package to a specific workspace (my-site) dev dependencies
+yarn workspace my-site add some-library -D
+
+# Add a package to root
+yarn add some-library -W
+
+# Add a dev dependency to all sub-repos
+lerna add some-library --dev
+
+```
+
+### Git
+
+```shell
+# Commit changes:
+git add .
+yarn commit \\ Instead of `git commit -m 'message...'`
+
+# Release new version
+yarn release \\ Instead of `lerna publish`
+```
+
+### Publishing packages
+
+Publishing packages (eg. NPM) is still handled manually as versioning is independently done per package. If you wish to synchronize versions, add to root package.json and update as needed:
+
+```json
+"standard-version": {
+    "bumpFiles": [
+      {
+        "filename": "apps/my-site/package.json",
+        "type": "json"
+      },
+      {
+        "filename": "libs/my-svelte-component-library/package.json",
+        "type": "json"
+      }
+    ]
+  }
+```
+
+When `yarn release` is run, these files will have their versions "bumped" as well. Test with `yarn release --dry-run`.
+
+---
+
 ## CI/CD
 
 This repository is setup with sample CI/CD using [Semaphore](semaphoreci.com/) and deploying to [Netlify](https://www.netlify.com/). Alternative providers of CI/CD such as [Travis CI](https://travis-ci.org/) or [Gitlab](https://docs.gitlab.com/ee/ci/) and hosts like [GitHub Pages](https://pages.github.com/) or [ZEIT](https://zeit.co/) Now have all their own requirements but will follow a similar setup.
@@ -87,3 +166,17 @@ Each step explained below can be found in the .semaphore dir respectively titled
 1. **Install deps, link + test**: When a branch (e.g. master, develop, feature/\*) is pushed to remote git repo (eg. github), Semaphore pulls that branch then installs dependencies, checks packages, linting and runs test. The step is mainly for continuous integration and confirms the integrity of any branches pushed to the repo. Status of branches passing this stage can be used to help determine acceptability for merging PRs, etc.
 2. **Build `my-site`**: If the previous passes and the branch is `master` or `develop`, then Semaphore builds the app **my-site** (apps/my-site). Sometimes errors may only occur during the build-cyle, so this stage can be used to check that a given app/library can be built. In this case, `my-site` is built for the purpose of deploying to production. Alternatively, this step could be used to build a library for publishing to NPM, etc.
 3. **Deploy `my-site` to Netlify**: If `my-site` builds successfully, then it is deployed to Netlify. Ideally, then stage can be broken into two parts, where the build is a deployed to staging url and integration/e2e test run against it. If they pass, then the build is finally pushed to production.
+
+---
+
+## [Todo]
+
+- **Typescript**: While Svelte shares much with javascript, it is also much its own language in syntax and implementation. While there are pre-processors and other tools for type checking Svelete, they are in their infancy and unstable.
+- **Templates**: Create templates to easily and consistently add new libraries, components or apps/sites using [Plop](https://plopjs.com/)
+- **Backend mocking**: [MirageJS](https://miragejs.com/)
+
+---
+
+## License
+
+[MIT](LICENSE)

@@ -28,6 +28,7 @@
     "monofix": "manypkg fix",
     "check-packages": "yarn clean && yarn monocheck && yarn lint && yarn eslint",
     "fix-packages": "yarn clean && yarn monofix && yarn lint:fix && yarn eslint:fix",
+    "commit": "git cz",
     "release": "standard-version"
   },
   "commitlint": {
