@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.1](https://github.com/Studiobear/svelte-monorepo-starter/compare/v0.1.0...v0.1.1) (2020-02-12)
+
+
+### Features
+
+* **my-site:** use local component library ([d100d79](https://github.com/Studiobear/svelte-monorepo-starter/commit/d100d7910f5fe404d58c3cf891791fe1949a3c9c))
+* **my-svelte-component-library:** integrate storybook ([16e23f8](https://github.com/Studiobear/svelte-monorepo-starter/commit/16e23f89ce916ef5af996153e01d1aa65d76301f))
+
+
+### Bug Fixes
+
+* ci cache clear added ([771649f](https://github.com/Studiobear/svelte-monorepo-starter/commit/771649fd742335fb50389585dc505584414eece8))
+* fix ci badge [ci-skip] ([22092aa](https://github.com/Studiobear/svelte-monorepo-starter/commit/22092aa08618488228ef5f1b3585add29404e149))
+* Update license ([a7f85fd](https://github.com/Studiobear/svelte-monorepo-starter/commit/a7f85fd115918c3de3803356372f3aeaee147f34))
+* **my-site:** my-svelte-component-library package version ([dea9751](https://github.com/Studiobear/svelte-monorepo-starter/commit/dea9751dba3afcdf6502f2ff30252941750a9430))
+
 ## [0.1.0](https://github.com/Studiobear/svelte-monorepo-starter/compare/v0.0.2...v0.1.0) (2020-02-10)
 
 
