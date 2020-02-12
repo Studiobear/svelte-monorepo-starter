@@ -1,6 +1,6 @@
 {
   "name": "svelte-monorepo-starter",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Monorepo for developing Svelte-centric apps, components and libraries",
   "author": "Barry Low <barry@studiobear.co>",
   "license": "MIT",
@@ -28,6 +28,7 @@
     "monofix": "manypkg fix",
     "check-packages": "yarn clean && yarn monocheck && yarn lint && yarn eslint",
     "fix-packages": "yarn clean && yarn monofix && yarn lint:fix && yarn eslint:fix",
+    "commit": "git add . && git cz",
     "release": "standard-version"
   },
   "commitlint": {
@@ -59,7 +60,7 @@
     "prettier": "^1.19.1",
     "prettier-plugin-svelte": "^0.7.0",
     "standard-version": "^7.1.0",
-    "svelte": "^3.18.1"
+    "svelte": "^3.18.2"
   },
   "config": {
     "commitizen": {

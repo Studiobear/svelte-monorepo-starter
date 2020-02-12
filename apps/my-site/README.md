@@ -1,32 +1,26 @@
+This is a sample Svelte app built with Svelte Sapper from [sapper-template-rollup](https://github.com/sveltejs/sapper-template-rollup)
+
+**Added features**
+
+- Jest/Testing-library: additional unit testing
+
+---
+
 # My Site
 
-This site was built with Svelte Sapper.
+This is a demonstration app to get you started with develop with Svelte.
 
-## Getting started
+## Setting up
 
-### Using `degit`
-
-[`degit`](https://github.com/Rich-Harris/degit) is a scaffolding tool that lets you create a directory from a branch in a repository. Use either the `rollup` or `webpack` branch in `sapper-template`:
-
-```bash
-# for Rollup
-npx degit "sveltejs/sapper-template#rollup" my-app
-# for webpack
-npx degit "sveltejs/sapper-template#webpack" my-app
-```
-
-### Using GitHub templates
-
-Alternatively, you can use GitHub's template feature with the [sapper-template-rollup](https://github.com/sveltejs/sapper-template-rollup) or [sapper-template-webpack](https://github.com/sveltejs/sapper-template-webpack) repositories.
+As this sub-repo is part of a monorepo, the initial `yarn` and `lerna bootstrap`-ing will have installed and linked all necessary dependencies.
 
 ### Running the project
 
-However you get the code, you can install dependencies and run the project in development mode with:
-
 ```bash
-cd my-app
-npm install # or yarn
-npm run dev
+yarn workspace my-site dev
+
+# For TDD
+yarn workspace my-site test:watch
 ```
 
 Open up [localhost:3000](http://localhost:3000) and start clicking around.
@@ -73,12 +67,12 @@ Sapper uses Rollup or webpack to provide code-splitting and dynamic imports, as 
 
 ## Production mode and deployment
 
-To start a production version of your app, run `npm run build && npm start`. This will disable live reloading, and activate the appropriate bundler plugins.
+To start a production version of your app, run `yarn build && yarn start`. This will disable live reloading, and activate the appropriate bundler plugins.
 
 You can deploy your application to any environment that supports Node 10 or above. As an example, to deploy to [ZEIT Now](https://zeit.co/now) when using `sapper export`, run these commands:
 
 ```bash
-npm install -g now
+yarn global add now
 now
 ```
 
@@ -91,9 +85,5 @@ When using Svelte components installed from npm, such as [@sveltejs/svelte-virtu
 Because of that, it's essential that the bundler doesn't treat the package as an _external dependency_. You can either modify the `external` option under `server` in [rollup.config.js](rollup.config.js) or the `externals` option in [webpack.config.js](webpack.config.js), or simply install the package to `devDependencies` rather than `dependencies`, which will cause it to get bundled (and therefore compiled) with your app:
 
 ```bash
-npm install -D @sveltejs/svelte-virtual-list
+yarn workspace my-site add @sveltejs/svelte-virtual-list -D
 ```
-
-## Bugs and feedback
-
-Sapper is in early development, and may have the odd rough edge here and there. Please be vocal over on the [Sapper issue tracker](https://github.com/sveltejs/sapper/issues).
