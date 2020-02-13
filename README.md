@@ -24,6 +24,14 @@ This is a _template repository_ and can easily be used by visiting the [repo on 
 - A [Commitizen](https://github.com/commitizen/cz-cli) friendly repo for standardized commit messages and changelog generation
 - Sample Svelte component library (libs/my-svelte-component-library) setup with [Storybook](https://storybook.js.org/) and testing via Jest/Testing-Library
 
+This repo is also used for experimenting with various methods, libraries and other interests and may have added implementations.
+
+Explorations
+
+- [ ] Markdown: Easy-to-read, easy-to-write text format. Separate the concerns and make content creation easier.
+- [ ] Themeing: Sustainable design consistency. 
+- [ ] GraphQL: Declarative data fetching with schema-centric sourche of truth shared between client and server.
+
 ## Getting Started
 
 Replicate template via [Github](https://github.com/Studiobear/svelte-monorepo-starter) UI.
@@ -145,6 +153,9 @@ yarn commit \\ Instead of `git add . && git commit -m '[type](scope): message...
 # Release new version
 yarn release \\ Instead of `lerna publish`
 ```
+
+To bump version level, use `--release-as` with the argument `major`, `minor` or `patch`
+[Standard Versions docs](https://github.com/conventional-changelog/standard-version#release-as-a-target-type-imperatively-npm-version-like):
 
 Note: Yes, remembering to use `yarn commit` is a pain at first and not much time/effort to use the standard method. However, the intent is in creating the healthy habit of consistently-formatted and informative commits. And, it's still your choice.
 
