@@ -19,32 +19,36 @@ import remark2rehype from 'remark-rehype'
 import stringify from 'rehype-stringify'
 import path from 'path'
 
-export const processor = unified()
-  .use(markdown)
-  .use(remark2rehype)
-  .use(frontmatter)
-  .use(extractFM, { name: 'frontmatter', yaml: yaml.parse })
-  .use(stringify)
-  .use(log)
-  .process(toVfile.readSync('./src/utils/example.md', 'utf8'))
-  .then(
-    function(file) {
-      return {
-        title: file.data.frontmatter.title || 'No title',
-        slug: file.data.frontmatter.slug || '',
-        html: file.contents,
-      }
-    },
-    function(err) {
-      throw new Error(err)
-    },
-  )
-  .catch(console.error)
-
-function log() {
-  const logger = (tree, file) => {
-    console.log('log:', tree, file) // 'Hi!'
-  }
-  return logger
+export const processMD = filepath => (foo = 'bar') => {
+  console.log('processMD: ', filepath, foo)
+  return filepath
 }
+
+export const processor = filepath => async () =>
+  await unified()
+    .use(markdown)
+    .use(remark2rehype)
+    .use(frontmatter)
+    .use(extractFM, { name: 'frontmatter', yaml: yaml.parse })
+    .use(rmfm)
+    .use(stringify)
+    .use(log)
+    .process(toVfile.readSync(filepath, 'utf8'))
+    .then(file => ({
+      title: file.data.frontmatter.title || 'No title',
+      slug: file.data.frontmatter.slug || '',
+      html: file.contents,
+    }))
+    .catch(console.error)
+
+const rmfm = removeFrontmatter
+
+const removeFrontmatter = () => async tree =>
+  filter(tree, node => node.type !== 'yaml')
+
+const log = () => (tree, file) => {
+  console.log('log:', tree, file)
+  return tree
+}
+
 export default processor

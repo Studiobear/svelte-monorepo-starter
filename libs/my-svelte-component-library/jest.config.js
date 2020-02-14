@@ -3,6 +3,7 @@ module.exports = {
     '^.+\\.svelte$': 'svelte-jester',
     '^.+\\.js$': 'babel-jest',
   },
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.([tj]sx?)$',
   moduleFileExtensions: ['js', 'svelte'],
   testPathIgnorePatterns: ['node_modules'],
   bail: false,
