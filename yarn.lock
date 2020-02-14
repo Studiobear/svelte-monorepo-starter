@@ -12156,6 +12156,13 @@ relateurl@^0.2.7:
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
 
+remark-extract-frontmatter@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/remark-extract-frontmatter/-/remark-extract-frontmatter-2.0.1.tgz#550cade3cab680a57b8e39bf13a959cca174e908"
+  integrity sha512-lmwuBn+2ylLQTlO0kX6XG2i7nJmRt+OSPmvaSymv1usjqOnyT1i5AnWmB7A7HqU9xDMzHny46Q8IlAETLbj9Cg==
+  dependencies:
+    xtend "^4.0.1"
+
 remark-frontmatter@^1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/remark-frontmatter/-/remark-frontmatter-1.3.2.tgz#91d9684319cd1b96cc3d9d901f10a978f39c752d"
