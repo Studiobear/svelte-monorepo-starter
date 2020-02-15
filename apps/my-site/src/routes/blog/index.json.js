@@ -5,6 +5,7 @@ const getContents = postsAll =>
     return {
       title: post.title,
       slug: post.slug,
+      date: post.date,
       excerpt: post.excerpt,
     }
   })

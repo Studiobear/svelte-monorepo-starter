@@ -50,11 +50,14 @@ export default {
         emitCss: true,
       }),
       resolve({
+        preferBuiltins: true,
         browser: true,
         dedupe: ['svelte'],
       }),
       commonjs(),
-
+      json({
+        compact: true,
+      }),
       legacy &&
         babel({
           extensions: ['.js', '.mjs', '.html', '.svelte'],
