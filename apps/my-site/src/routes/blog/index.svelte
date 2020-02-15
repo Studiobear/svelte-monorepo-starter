@@ -1,9 +1,12 @@
 <script context="module">
   import axios from 'axios'
+  import { siteUrl } from '../../utils'
+
+  const blogUrl = `${siteUrl}/blog.json`
 
   export const preload = () =>
     axios
-      .get('http://localhost:3002/blog.json')
+      .get(blogUrl)
       .then(posts => {
         console.log('preload posts: ', posts.data)
         return { posts: posts.data }

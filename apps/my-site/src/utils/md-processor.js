@@ -25,7 +25,9 @@ export const removeFrontmatter = () => tree =>
 export const processorMock = () => async filepath => {
   const postBody = await unified()
     .use(markdown)
+    .use(remark2rehype)
     .use(frontmatter)
+    .use(stringify)
     // .use(log)
     .process(toVfile.readSync(filepath, 'utf8'))
     .then(file => ({

@@ -7,11 +7,12 @@
   "license": "MIT",
   "scripts": {
     "develop": "run-p --race dev cy:open",
-    "dev": "sapper dev --ext '.svelte .svx'",
+    "dev": "sapper dev",
     "debug": "ndb yarn dev",
     "build": "sapper build --legacy",
-    "export": "sapper export --legacy --ext '.svelte .svx'",
+    "export": "sapper export --legacy",
     "start": "node __sapper__/build",
+    "start:export": "npx serve __sapper__/export",
     "eslint": "eslint src",
     "eslint:fix": "eslint --fix src",
     "lint": "prettier --check 'src/**/*.{html,js,svelte}'",
@@ -20,7 +21,8 @@
     "jest:watch": "yarn jest --watch src",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "test": "run-p --race jest cy:run"
+    "test": "run-p --race jest cy:run",
+    "kill": "kill $(lsof -ti:3001,3000,3002)"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -43,6 +45,7 @@
     "@testing-library/svelte": "^1.11.0",
     "babel-jest": "^25.1.0",
     "cypress": "^4.0.1",
+    "dotenv": "^8.2.0",
     "jest": "^25.1.0",
     "jest-dom": "^4.0.0",
     "jest-transform-svelte": "^2.1.1",
