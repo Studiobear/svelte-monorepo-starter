@@ -41,7 +41,7 @@
       <h2>
         <a href="/blog/{post.slug}">{post.title}</a>
       </h2>
-      <p>{post.excerpt}</p>
+      {@html post.excerpt}
       <div>
         <div>Date: {post.date}</div>
         <div>

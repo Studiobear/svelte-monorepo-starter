@@ -19,12 +19,9 @@ const processPosts = () => async (allFiles = []) => {
   const getPosts = await Promise.all(
     posts.map(async post => {
       const postWrap = await postProcessor(post)
-      console.log('pp getPosts: ', post, await postWrap)
       return postWrap
     }),
   ).catch(console.error)
-
-  console.log('ppgetPosts post: ', await getPosts)
 
   return getPosts
 }

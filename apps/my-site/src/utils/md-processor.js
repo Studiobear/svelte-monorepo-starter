@@ -1,20 +1,11 @@
 import toVfile from 'to-vfile'
 import VMessage from 'vfile-message'
-import report from 'vfile-reporter'
 import unified from 'unified'
 import markdown from 'remark-parse'
-// import slug from 'remark-slug'
-// import toc from 'remark-toc'
 import frontmatter from 'remark-frontmatter'
-import yaml from 'yaml'
-import extract from 'remark-extract-frontmatter'
 import parseFrontmatter from 'remark-parse-yaml'
 import excerpt from 'remark-excerpt'
-// import remark2retext from 'remark-retext'
-// import english from 'retext-english'
-// import indefiniteArticle from 'retext-indefinite-article'
 import remark2rehype from 'remark-rehype'
-// import format from 'rehype-format'
 import stringify from 'rehype-stringify'
 import filter from 'unist-util-filter'
 import visit from 'unist-util-visit'
@@ -29,29 +20,6 @@ export const removeFrontmatter = () => async (tree, file) => {
   })
   file.data.frontmatter = getFrontMatter
   return filter(tree, node => node.type !== 'yaml')
-}
-export const processorMock = () => async filepath => {
-  const postBody = await unified()
-    .use(markdown)
-    .use(remark2rehype)
-    .use(frontmatter)
-    .use(extract, {
-      yaml: require('yaml').parse,
-      parsers: yaml.parse,
-      name: 'frontmatter',
-    })
-    .use(stringify)
-    .use(log)
-    .process(toVfile.readSync(filepath, 'utf8'))
-    .then(file => ({
-      title: filepath,
-      slug: 'mock-slug',
-      html: '<p>Mock</p><p>Hi!</p>',
-    }))
-    .catch(console.error)
-
-  const postExcerpt = await { excerpt: '<p>Mock</p>' }
-  return xtend(postBody, postExcerpt)
 }
 
 export const processor = () => async filepath => {

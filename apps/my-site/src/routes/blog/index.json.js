@@ -14,9 +14,7 @@ const posts = processPosts()
 
 export const get = async (req, res) => {
   const getPostContents = await posts()
-  console.log('get:', getPostContents)
   const postContents = await getContents(getPostContents)
-  console.log('get postContents:', await postContents)
   res.writeHead(200, {
     'Content-Type': 'application/json',
   })
