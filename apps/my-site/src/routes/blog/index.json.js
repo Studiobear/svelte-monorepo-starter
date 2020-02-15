@@ -1,18 +1,24 @@
-import posts from './_posts.js'
+import processPosts from './_posts.js'
 
-const contents = JSON.stringify(
-  posts.map(post => {
+const getContents = postsAll =>
+  postsAll.map(post => {
     return {
       title: post.title,
       slug: post.slug,
+      excerpt: post.excerpt,
     }
-  }),
-)
+  })
 
-export function get(req, res) {
+const posts = processPosts()
+
+export const get = async (req, res) => {
+  const getPostContents = await posts()
+  console.log('get:', getPostContents)
+  const postContents = await getContents(getPostContents)
+  console.log('get postContents:', await postContents)
   res.writeHead(200, {
     'Content-Type': 'application/json',
   })
 
-  res.end(contents)
+  res.end(JSON.stringify(await postContents))
 }

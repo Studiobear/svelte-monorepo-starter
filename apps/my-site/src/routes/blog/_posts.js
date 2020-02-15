@@ -1,24 +1,31 @@
-import fs from 'fs'
-import path from 'path'
-import mdProcessor from '../../utils'
+import { readdir } from 'fs'
+import { join } from 'path'
+import { promisify } from 'util'
+
+import { processorMock } from '../../utils'
+
+const readdirP = promisify(readdir)
 
 const cwd = process.cwd()
-const POSTS_DIR = path.join(cwd, 'src/routes/blog/posts/')
+const POSTS_DIR = join(cwd, 'src/routes/blog/posts/')
 
-const posts = fs
-  .readdirSync(POSTS_DIR)
-  .filter(fileName => /\.md$/.test(fileName))
-  .map(fileName => {
-    const fileMd = fs.readFileSync(path.join(POSTS_DIR, fileName), 'utf8')
-    return mdProcessor.process(fileMd, (err, file) => {
-      if (err) throw err
-      console.error(report(file))
-      return
-    })
-  })
+const postProcessor = processorMock()
 
-posts.forEach(post => {
-  post.html = post.html.replace(/^\t{3}/gm, '')
-})
+const processPosts = () => async (allFiles = []) => {
+  const posts = (await readdirP(POSTS_DIR))
+    .filter(fileName => /\.md$/.test(fileName))
+    .map(f => join(POSTS_DIR, f))
 
-export default posts
+  const getPosts = await Promise.all(
+    posts.map(async post => {
+      const postWrap = await postProcessor(post)
+      console.log('pp getPosts: ', post, await postWrap)
+      return postWrap
+    }),
+  ).catch(console.error)
+
+  console.log('ppgetPosts post: ', await getPosts)
+
+  return getPosts
+}
+export default processPosts

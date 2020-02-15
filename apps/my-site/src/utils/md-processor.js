@@ -15,15 +15,37 @@ import excerpt from 'remark-excerpt'
 import remark2rehype from 'remark-rehype'
 // import format from 'rehype-format'
 import stringify from 'rehype-stringify'
+import filter from 'unist-util-filter'
+import xtend from 'xtend'
 import path from 'path'
 
-export const processor = filepath => async () => {
+export const removeFrontmatter = () => tree =>
+  filter(tree, node => node.type !== 'yaml')
+
+export const processorMock = () => async filepath => {
+  const postBody = await unified()
+    .use(markdown)
+    .use(frontmatter)
+    // .use(log)
+    .process(toVfile.readSync(filepath, 'utf8'))
+    .then(file => ({
+      title: filepath,
+      slug: 'mock-slug',
+      html: '<p>Mock</p><p>Hi!</p>',
+    }))
+    .catch(console.error)
+
+  const postExcerpt = await { excerpt: '<p>Mock</p>' }
+  return xtend(postBody, postExcerpt)
+}
+
+export const processor = () => async filepath => {
   const postBody = await unified()
     .use(markdown)
     .use(remark2rehype)
     .use(frontmatter)
     .use(extractFM, { name: 'frontmatter', yaml: yaml.parse })
-    .use(rmfm)
+    .use(removeFrontmatter)
     .use(stringify)
     // .use(log)
     .process(toVfile.readSync(filepath, 'utf8'))
@@ -47,13 +69,8 @@ export const processor = filepath => async () => {
     }))
     .catch(console.error)
 
-  return Object.assign({}, postBody, postExcerpt)
+  return xtend(postBody, postExcerpt)
 }
-
-const rmfm = removeFrontmatter
-
-const removeFrontmatter = () => async tree =>
-  filter(tree, node => node.type !== 'yaml')
 
 const log = () => (tree, file) => {
   console.log('log:', tree, file)

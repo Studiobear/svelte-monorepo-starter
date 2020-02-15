@@ -1,11 +1,14 @@
 <script context="module">
-  export function preload({ params, query }) {
-    return this.fetch(`blog.json`)
-      .then(r => r.json())
+  import axios from 'axios'
+
+  export const preload = () =>
+    axios
+      .get('http://localhost:3002/blog.json')
       .then(posts => {
-        return { posts }
+        console.log('preload posts: ', posts.data)
+        return { posts: posts.data }
       })
-  }
+      .catch(console.error)
 </script>
 
 <script>

@@ -1,10 +1,13 @@
 import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import commonjs from '@rollup/plugin-commonjs'
+import json from '@rollup/plugin-json'
 import svelte from 'rollup-plugin-svelte'
 import babel from 'rollup-plugin-babel'
 import { terser } from 'rollup-plugin-terser'
 import config from 'sapper/config/rollup.js'
+import remark from 'remark'
+import html from 'remark'
 import pkg from './package.json'
 
 const mode = process.env.NODE_ENV
@@ -15,6 +18,18 @@ const onwarn = (warning, onwarn) =>
   (warning.code === 'CIRCULAR_DEPENDENCY' &&
     /[/\\]@sapper[/\\]/.test(warning.message)) ||
   onwarn(warning)
+
+const markdown = () => ({
+  transform(md, id) {
+    if (!/\.md$/.test(id)) return null
+    const data = remark()
+      .use(html)
+      .process(md, (err, file) => String(file))
+    return {
+      code: `export default ${JSON.stringify(data)};`,
+    }
+  },
+})
 
 export default {
   client: {
@@ -73,6 +88,7 @@ export default {
     input: config.server.input(),
     output: config.server.output(),
     plugins: [
+      resolve({ preferBuiltins: true }),
       replace({
         'process.browser': false,
         'process.env.NODE_ENV': JSON.stringify(mode),
@@ -85,6 +101,8 @@ export default {
         dedupe: ['svelte'],
       }),
       commonjs(),
+      markdown(),
+      json(),
     ],
     external: Object.keys(pkg.dependencies).concat(
       require('module').builtinModules ||
