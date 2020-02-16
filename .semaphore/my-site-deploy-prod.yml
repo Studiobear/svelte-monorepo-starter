@@ -5,6 +5,7 @@ blocks:
     task:
       secrets:
         - name: netlify-auth-svelte-monorepo
+        - name: production-env
       jobs:
         - name: Deploy Website
           commands:
