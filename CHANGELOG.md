@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/Studiobear/svelte-monorepo-starter/compare/v0.2.0...v0.2.1) (2020-02-16)
+
+
+### Features
+
+* **my-site:** create markdown processor ([971c78f](https://github.com/Studiobear/svelte-monorepo-starter/commit/971c78faff575ca216d75f24fa47c92086151b80))
+* **my-site:** generate excerpts using excerpt comment in md ([a2683b9](https://github.com/Studiobear/svelte-monorepo-starter/commit/a2683b9ad6a4515f2e05a2a8fb5913ffe980546e))
+* **my-site:** markdown import into blog index and sub pages ([2a16eeb](https://github.com/Studiobear/svelte-monorepo-starter/commit/2a16eeb94832a97cf265fa5b05351c67824e3196))
+* **my-site:** parse markdown frontmatter ([b972f76](https://github.com/Studiobear/svelte-monorepo-starter/commit/b972f76827208a37b0c10dac15ea629b0a8977bd))
+* **my-site:** sub-posts render markdown ([2646d86](https://github.com/Studiobear/svelte-monorepo-starter/commit/2646d869c7822e9b2449f532daec16acd1e0a0bc))
+
+
+### Bug Fixes
+
+* **my-site:** extract frontmatter from md ([99c755d](https://github.com/Studiobear/svelte-monorepo-starter/commit/99c755d8ff370ea0b7cec9d0fc68acc443bbeba9))
+
 ## [0.2.0](https://github.com/Studiobear/svelte-monorepo-starter/compare/v0.1.1...v0.2.0) (2020-02-12)
 
 ### [0.1.1](https://github.com/Studiobear/svelte-monorepo-starter/compare/v0.1.0...v0.1.1) (2020-02-12)
