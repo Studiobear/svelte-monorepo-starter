@@ -6,7 +6,7 @@ const postWrap = processor(filePath)
 
 describe('MD Processor', () => {
   test('should return post title, slug, html and excerpt', async () => {
-    const post = await postWrap()
+    const post = await postWrap(filePath)
 
     // console.log(post)
     expect(post).toHaveProperty('title')
