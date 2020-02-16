@@ -1,11 +1,14 @@
 <script context="module">
-  export function preload({ params, query }) {
-    return this.fetch(`blog.json`)
-      .then(r => r.json())
-      .then(posts => {
-        return { posts }
-      })
-  }
+  import axios from 'axios'
+
+  const siteUrl = process.env.SITE_URL
+  const blogUrl = `${siteUrl}/blog.json`
+
+  export const preload = () =>
+    axios
+      .get(blogUrl)
+      .then(posts => ({ posts: posts.data }))
+      .catch(console.error)
 </script>
 
 <script>
@@ -32,7 +35,16 @@
 				the user hovers over the link or taps it, instead of
 				waiting for the 'click' event -->
     <li>
-      <a rel="prefetch" href="blog/{post.slug}">{post.title}</a>
+      <h2>
+        <a rel="prefetch" href="/blog/{post.slug}">{post.title}</a>
+      </h2>
+      {@html post.excerpt}
+      <div>
+        <div>Date: {post.date}</div>
+        <div>
+          <a rel="prefetch" href="/blog/{post.slug}">Read more&hellip;</a>
+        </div>
+      </div>
     </li>
   {/each}
 </ul>

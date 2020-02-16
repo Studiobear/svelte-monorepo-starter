@@ -1,21 +1,27 @@
-import posts from './_posts.js'
+import processPosts from './_posts.js'
 
 const lookup = new Map()
-posts.forEach(post => {
-  lookup.set(post.slug, JSON.stringify(post))
-})
 
-export function get(req, res, next) {
+const setLookup = postsAll =>
+  postsAll.map(post => {
+    lookup.set(post.slug, JSON.stringify(post))
+  })
+
+const posts = processPosts()
+
+export const get = async (req, res, next) => {
   // the `slug` parameter is available because
   // this file is called [slug].json.js
   const { slug } = req.params
+  const getPostContents = await posts()
+  const callLookup = await setLookup(getPostContents)
 
-  if (lookup.has(slug)) {
+  if (await lookup.has(slug)) {
     res.writeHead(200, {
       'Content-Type': 'application/json',
     })
 
-    res.end(lookup.get(slug))
+    res.end(await lookup.get(slug))
   } else {
     res.writeHead(404, {
       'Content-Type': 'application/json',
@@ -28,3 +34,5 @@ export function get(req, res, next) {
     )
   }
 }
+
+export default get
