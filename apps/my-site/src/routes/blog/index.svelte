@@ -1,16 +1,13 @@
 <script context="module">
   import axios from 'axios'
-  import { siteUrl } from '../../utils'
 
+  const siteUrl = process.env.SITE_URL
   const blogUrl = `${siteUrl}/blog.json`
 
   export const preload = () =>
     axios
       .get(blogUrl)
-      .then(posts => {
-        console.log('preload posts: ', posts.data)
-        return { posts: posts.data }
-      })
+      .then(posts => ({ posts: posts.data }))
       .catch(console.error)
 </script>
 
@@ -39,13 +36,13 @@
 				waiting for the 'click' event -->
     <li>
       <h2>
-        <a href="/blog/{post.slug}">{post.title}</a>
+        <a rel="prefetch" href="/blog/{post.slug}">{post.title}</a>
       </h2>
       {@html post.excerpt}
       <div>
         <div>Date: {post.date}</div>
         <div>
-          <a href="/blog/{post.slug}">Read more&hellip;</a>
+          <a rel="prefetch" href="/blog/{post.slug}">Read more&hellip;</a>
         </div>
       </div>
     </li>

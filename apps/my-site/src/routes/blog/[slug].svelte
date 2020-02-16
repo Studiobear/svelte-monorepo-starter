@@ -1,16 +1,13 @@
 <script context="module">
   import axios from 'axios'
-  import { siteUrl } from '../../utils'
 
-  const postUrl = `${siteUrl}/blog.json`
+  const siteUrl = process.env.SITE_URL
+  const postUrl = `${siteUrl}/blog`
 
-  export const preload = () =>
+  export const preload = ({ params }) =>
     axios
       .get(`${postUrl}/${params.slug}.json`)
-      .then(posts => {
-        console.log('preload posts: ', posts.data)
-        return { posts: posts.data }
-      })
+      .then(posts => ({ post: posts.data }))
       .catch(console.error)
 </script>
 

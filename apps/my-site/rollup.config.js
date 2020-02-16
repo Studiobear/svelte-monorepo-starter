@@ -10,7 +10,7 @@ import babel from 'rollup-plugin-babel'
 import { terser } from 'rollup-plugin-terser'
 import config from 'sapper/config/rollup.js'
 import remark from 'remark'
-import html from 'remark'
+import html from 'remark-html'
 
 import pkg from './package.json'
 
@@ -35,6 +35,8 @@ const markdown = () => ({
   },
 })
 
+const extensions = ['.js']
+
 export default {
   client: {
     input: config.client.input(),
@@ -43,6 +45,10 @@ export default {
       replace({
         'process.browser': true,
         'process.env.NODE_ENV': JSON.stringify(mode),
+        'process.env.SITE_URL':
+          process.env.NODE_ENV === 'development'
+            ? `'${process.env.SITE_URL}'`
+            : `'${process.env.PROD_URL}'`,
       }),
       svelte({
         dev,
@@ -50,9 +56,9 @@ export default {
         emitCss: true,
       }),
       resolve({
-        preferBuiltins: true,
         browser: true,
         dedupe: ['svelte'],
+        extensions,
       }),
       commonjs(),
       json({
@@ -99,6 +105,10 @@ export default {
       replace({
         'process.browser': false,
         'process.env.NODE_ENV': JSON.stringify(mode),
+        'process.env.SITE_URL':
+          process.env.NODE_ENV === 'development'
+            ? `'${process.env.SITE_URL}'`
+            : `'${process.env.PROD_URL}'`,
       }),
       svelte({
         generate: 'ssr',
@@ -127,6 +137,10 @@ export default {
       replace({
         'process.browser': true,
         'process.env.NODE_ENV': JSON.stringify(mode),
+        'process.env.SITE_URL':
+          process.env.NODE_ENV === 'development'
+            ? `'${process.env.SITE_URL}'`
+            : `'${process.env.PROD_URL}'`,
       }),
       commonjs(),
       !dev && terser(),

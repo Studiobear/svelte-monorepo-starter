@@ -12,7 +12,6 @@ const posts = processPosts()
 export const get = async (req, res, next) => {
   // the `slug` parameter is available because
   // this file is called [slug].json.js
-  console.log('slug get: ', req, next)
   const { slug } = req.params
   const getPostContents = await posts()
   const callLookup = await setLookup(getPostContents)
