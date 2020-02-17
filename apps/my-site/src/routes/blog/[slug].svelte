@@ -1,14 +1,16 @@
 <script context="module">
-  import axios from 'axios'
-
   const siteUrl = process.env.SITE_URL
   const postUrl = `${siteUrl}/blog`
 
-  export const preload = ({ params }) =>
-    axios
-      .get(`${postUrl}/${params.slug}.json`)
-      .then(posts => ({ post: posts.data }))
+  export const preload = async function({ params }) {
+    const fetchBlog = await this.fetch(`/blog/${params.slug}.json`)
+      .then(response => response.json())
+      .then(data => {
+        return { post: data }
+      })
       .catch(console.error)
+    return fetchBlog
+  }
 </script>
 
 <script>
