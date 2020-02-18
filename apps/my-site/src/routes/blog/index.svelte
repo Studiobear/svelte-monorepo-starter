@@ -1,5 +1,4 @@
 <script context="module">
-  const siteUrl = process.env.SITE_URL
   const blogUrl = `blog.json`
   export const preload = async function() {
     return await this.fetch(blogUrl)
