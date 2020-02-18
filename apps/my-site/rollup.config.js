@@ -1,7 +1,3 @@
-import dotenv from 'dotenv'
-dotenv.config()
-
-// import alias from '@rollup/plugin-alias'
 import resolve from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import commonjs from '@rollup/plugin-commonjs'
@@ -12,7 +8,6 @@ import { terser } from 'rollup-plugin-terser'
 import config from 'sapper/config/rollup.js'
 import remark from 'remark'
 import html from 'remark-html'
-// import { join } from 'path'
 
 import pkg from './package.json'
 
@@ -37,8 +32,6 @@ const markdown = () => ({
   },
 })
 
-// const extensions = ['.js']
-
 export default {
   client: {
     input: config.client.input(),
@@ -47,10 +40,6 @@ export default {
       replace({
         'process.browser': true,
         'process.env.NODE_ENV': JSON.stringify(mode),
-        'process.env.SITE_URL':
-          process.env.NODE_ENV === 'development'
-            ? `'${process.env.SITE_URL}'`
-            : `'${process.env.PROD_URL}'`,
       }),
       svelte({
         dev,
@@ -60,18 +49,7 @@ export default {
       resolve({
         browser: true,
         dedupe: ['svelte'],
-        // extensions,
       }),
-      /*
-      alias({
-        entries: [
-          {
-            find: '@sapper/app',
-            replacement: join(__dirname, 'src/node_modules/@sapper/app'),
-          },
-        ],
-      }),
-      */
       commonjs(),
       json({
         compact: true,
