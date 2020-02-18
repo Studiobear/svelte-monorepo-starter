@@ -1,7 +1,4 @@
 <script context="module">
-  const siteUrl = process.env.SITE_URL
-  const postUrl = `${siteUrl}/blog`
-
   export const preload = async function({ params }) {
     const fetchBlog = await this.fetch(`/blog/${params.slug}.json`)
       .then(response => response.json())

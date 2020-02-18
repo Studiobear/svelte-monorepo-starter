@@ -9,8 +9,6 @@ blocks:
     skip:
       when: branch != 'master' AND branch != 'develop'
     task:
-      secrets:
-        - name: production-env
       jobs:
         - name: Build Core
           commands:
