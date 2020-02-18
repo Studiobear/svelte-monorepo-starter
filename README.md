@@ -28,8 +28,9 @@ This repo is also used for experimenting with various methods, libraries and oth
 
 Explorations
 
-- [ ] Markdown: Easy-to-read, easy-to-write text format. Separate the concerns and make content creation easier.
-- [ ] Themeing: Sustainable design consistency. 
+- [x] Markdown: Easy-to-read, easy-to-write text format. Separate the concerns and make content creation easier.
+  - (my-site) Markdown parsing implented using [unifiedjs](https://unifiedjs.com/) + [remark](https://remark.js.org/). This will allow for simpler extensibility of markdown adding linting, ability to embed a variety of content sources, code highlighting, and more.
+- [ ] Themeing: Sustainable design consistency.
 - [ ] GraphQL: Declarative data fetching with schema-centric sourche of truth shared between client and server.
 
 ## Getting Started

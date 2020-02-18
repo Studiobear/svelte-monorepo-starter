@@ -87,3 +87,12 @@ Because of that, it's essential that the bundler doesn't treat the package as an
 ```bash
 yarn workspace my-site add @sveltejs/svelte-virtual-list -D
 ```
+
+---
+
+## Notes
+
+### Svelte-centric Gotchas
+
+- **Don't user arrow function for preload in `context="module"`**: [Reason](https://github.com/rollup/rollup/issues/1518#issuecomment-374727013)
+  - Use `export const preload = async function() { \\...`
