@@ -5,6 +5,8 @@ A few things have been added:
 - [Storybook](): For component development fun! Seriously though, makes test-driven development natural.
 - Jest/Testing-library: In combination with above === win!!!
 
+[**Demo Site**](https://svelte-monorepo-starter.netlify.com/blog/markdown-test) - Hosted by Netlify and deployed via [Semaphore CI](https://semaphoreci.com)
+
 ---
 
 # My Svelte Component Library

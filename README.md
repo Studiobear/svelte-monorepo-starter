@@ -207,3 +207,9 @@ Each step explained below can be found in the .semaphore dir respectively titled
 ## License
 
 [MIT](LICENSE)
+
+<p align="right">
+<a href="https://www.netlify.com">
+  <img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg"/>
+</a>
+</p>
